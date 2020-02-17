@@ -1,0 +1,26 @@
+[
+{
+  "model": "courses.subject",
+  "pk": 3,
+  "fields": {
+    "title": "MERN STACK",
+    "slug": "mern-stack"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 4,
+  "fields": {
+    "title": "MEAN STACK",
+    "slug": "mean-stack"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 5,
+  "fields": {
+    "title": "LAMP STACK",
+    "slug": "lamp-stack"
+  }
+}
+]
