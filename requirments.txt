@@ -1,0 +1,29 @@
+Subject 1
+    Course 1
+        Module 1
+            content 1
+            content 2
+
+        Module 2
+            content 1
+            content 2
+            content 3
+            content 4
+
+Subject
+    -title
+    -slug
+
+Course
+    -owner
+    -Subject
+    -title
+    -slug
+    -overview
+    -created
+
+Module
+    -Course
+    -title
+    -description
+    
