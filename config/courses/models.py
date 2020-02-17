@@ -1,9 +1,13 @@
 from django.db import models
 
+# creating models for diverse content to store data such as text, images, files and so.
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey
+
 # Using inbuilt 'User' module
 from django.contrib.auth.models import User 
 
-# models starts from here
+
 # creating Main model as 'Subject', sub model as 'Courses' and 
 # sub model for course as 'Module'.
 
@@ -42,3 +46,11 @@ class Module(models.Model):
 
     def __str__(self):
         return self.title
+
+# Content sub model for 'Module'
+class Content(models.Model):
+    module = models.ForeignKey(Module, related_name='contents', on_delete=models.CASCADE)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    item = GenericForeignKey('content_type', 'object_id')
+    
