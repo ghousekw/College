@@ -7,6 +7,8 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 # Using inbuilt 'User' module
 from django.contrib.auth.models import User 
 
+# import fields
+from .fields import OrderField
 
 # creating Main model as 'Subject', sub model as 'Courses' and 
 # sub model for course as 'Module'.
@@ -44,8 +46,13 @@ class Module(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 
+    order = OrderField(blank=True, for_fields=['course'])
+
+    class Meta:
+        ordering = ['order']
+
     def __str__(self):
-        return self.title
+        return f"{self.order}. {self.title}"
 
 # Content sub model for 'Module'
 class Content(models.Model):
@@ -57,6 +64,11 @@ class Content(models.Model):
     object_id = models.PositiveIntegerField()
     item = GenericForeignKey('content_type', 'object_id')
 
+    order = OrderField(blank=True, for_fields=['module'])
+
+    class Meta:
+        ordering = ['order']
+        
 # Creating content models
 class ItemBase(models.Model):
     owner = models.ForeignKey(User, related_name='%(class)s_related', on_delete=models.CASCADE)
